@@ -18,6 +18,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Builder
@@ -28,6 +29,7 @@ import lombok.NoArgsConstructor;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Setter
     private String id;
 
     private String nombre;
@@ -39,89 +41,8 @@ public class Product {
 
     @JsonManagedReference
     @OneToMany(mappedBy = "producto",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Setter
     private Set<Comment> comentarios;
-
-    public Product(String nombre, String descripcion, String lote, float precioUnitario, LocalDate fechaCaducidad) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.lote = lote;
-        this.precioUnitario = precioUnitario;
-        this.fechaCaducidad = fechaCaducidad;
-    }
-    public Product(String nombre, String descripcion, String lote, float precioUnitario, LocalDate fechaCaducidad, Set<Comment> comentarioList) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.lote = lote;
-        this.precioUnitario = precioUnitario;
-        this.fechaCaducidad = fechaCaducidad;
-        this.comentarios = comentarioList;
-    }
-
-    public Product(String id, String nombre, String descripcion, String lote, float precioUnitario,
-            LocalDate fechaCaducidad) {
-        this.id = id;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.lote = lote;
-        this.precioUnitario = precioUnitario;
-        this.fechaCaducidad = fechaCaducidad;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public String getLote() {
-        return lote;
-    }
-
-    public float getPrecioUnitario() {
-        return precioUnitario;
-    }
-
-    public LocalDate getFechaCaducidad() {
-        return fechaCaducidad;
-    }
-
-    public Set<Comment> getComentarios() {
-        return comentarios;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public void setLote(String lote) {
-        this.lote = lote;
-    }
-
-    public void setPrecioUnitario(float precioUnitario) {
-        this.precioUnitario = precioUnitario;
-    }
-
-    public void setFechaCaducidad(LocalDate fechaCaducidad) {
-        this.fechaCaducidad = fechaCaducidad;
-    }
-
-    public void setComentarios(Set<Comment> comentarios) {
-        this.comentarios = comentarios;
-    }
 
     
 }
