@@ -1,0 +1,14 @@
+¿En qué tabla queda la llave foránea y qué propiedad de Java la controla?
+La llave foránea queda en la tabla comentarios. La propiedad que la controla es producto de la clase Comment, que tiene la anotación ManyToOne. Por eso en la tabla aparece la columna producto_id.
+
+¿Cuál es la diferencia entre List y Set?
+Una List guarda los elementos en orden y deja repetirlos. Un Set no deja elementos repetidos y no asegura ningún orden.
+
+¿Por qué los identificadores son String y qué tipo de valor guardan?
+Son String porque guardan un UUID, que es un texto largo y único que se genera solo para cada registro. Así no se repiten aunque haya muchos datos.
+
+¿Qué ocurre al eliminar un producto con comentarios asociados? ¿Qué cambia si se quita CascadeType.ALL?
+Al eliminar el producto también se eliminan sus comentarios, porque el cascade propaga el borrado. Si se quita CascadeType.ALL, los comentarios no se borran con el producto y la base de datos marca error al intentar eliminarlo, porque los comentarios siguen apuntando a ese producto.
+
+¿Qué diferencia práctica hay entre los FetchType usados en Product y Comment?
+En Product es EAGER, así que al consultar un producto sus comentarios se traen de una vez. En Comment es LAZY, así que el producto de un comentario solo se carga cuando se necesita.
